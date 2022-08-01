@@ -1,10 +1,17 @@
 const express=require('express')
 const appError = require('./utility/appError')
 const userRout=require('./router/userRout')
+const productRout=require('./router/productRout')
+const reviewRout=require('./router/reviewRout')
+const categoryRout=require('./router/categoryRout')
 
 const app=express()
 
+app.use(express.json())
 app.use('/api/v1/users',userRout)
+app.use('/api/v1/reviews',reviewRout)
+app.use('/api/v1/products',productRout)
+app.use('/api/v1/categories',categoryRout)
 
 app.all('*',function(req,res,next){
    next(new appError('Not page ! ',404))

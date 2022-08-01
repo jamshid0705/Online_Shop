@@ -13,12 +13,12 @@ const productSchema=new mongoose.Schema({
   price:{
     type:Number,
     required:[true,'Siz photo kirting !'],
-    validate:{
-      validator:function(val){
-        return validator.isInt(val)
-      },
-      message:'Siz pricega butun qiymat kiriting!'
-    }
+    // validate:{
+    //   validator:function(val){
+    //     return validator.isInteger(val)
+    //   },
+    //   message:'Siz pricega butun qiymat kiriting!'
+    // }
   },
   rating:{
     type:Number,

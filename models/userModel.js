@@ -1,5 +1,6 @@
 const mongoose=require('mongoose')
 const validator=require('validator')
+const bcrypt=require('bcrypt')
 
 const userschema=new mongoose.Schema({
   name:{
@@ -29,10 +30,29 @@ const userschema=new mongoose.Schema({
       return validator.isStrongPassword(val)
     },message:'Siz kuchliroq password kiriting'}
   },
+  passwordConfirm:{
+    type:String,
+    required:[true,"Siz passwordni qayta kiritishingiz kerak"],
+    validate:{
+      validator:function(val){
+        return val===this.password
+      },message:"Passwordni qayta kiriting"
+    }
+  },
   photo:{
     type:String,
     required:[true,"Siz photo kiriting"]
   }
+})
+
+userschema.pre('save',async function(next){
+  if(!this.isModified('password')){
+    return next()
+  }
+
+  const hashlangan=await bcrypt.hash(this.password,14)
+  this.password=hashlangan
+  this.passwordConfirm=undefined
 })
 
 const user=mongoose.model('users',userschema)

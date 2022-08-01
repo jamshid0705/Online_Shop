@@ -11,7 +11,7 @@ const getAlluser=catchError(async(req,res,next)=>{
 })
 
 const addUser=catchError(async(req,res,next)=>{
-  console.log(req.body)
+  console.log(req)
   const data=await User.create(req.body)
 
   res.status(200).json({
