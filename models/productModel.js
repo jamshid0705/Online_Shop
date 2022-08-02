@@ -38,8 +38,15 @@ const productSchema=new mongoose.Schema({
   information:{
     type:String,
   }
+},{
+  toJSON:{virtuals:true},
+  toObject:{virtuals:true}
 })
 
 const Product=mongoose.model('products',productSchema)
+
+productSchema.virtual('newprice').get(function(){
+  return this.price*0.9
+})
 
 module.exports=Product

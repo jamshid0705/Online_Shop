@@ -1,0 +1,129 @@
+extends base
+
+mixin price(id,forPrice,prices,end)
+  .custom-control.custom-checkbox.d-flex.align-items-center.justify-content-between.mb-3
+              input(id=`${id}` class='custom-control-input' type='checkbox')
+              label.custom-control-label(for=`${forPrice}`)=prices 
+              span.badge.border.font-weight-normal=end
+
+mixin a(url,name)
+  a.dropdown-item(href=`${url}`)=name
+
+block content
+  // Breadcrumb Start
+  .container-fluid
+    .row.px-xl-5
+      .col-12
+        nav.breadcrumb.bg-light.mb-30
+          a.breadcrumb-item.text-dark(href='/home') Home
+          a.breadcrumb-item.text-dark(href='/shopmain') Shop
+          span.breadcrumb-item.active Shop List
+  // Breadcrumb End
+  // Shop Start
+  .container-fluid
+    .row.px-xl-5
+      // Shop Sidebar Start
+      .col-lg-3.col-md-4
+        // Price Start
+        h5.section-title.position-relative.text-uppercase.mb-3
+          span.bg-secondary.pr-3 Filter by price
+        .bg-light.p-4.mb-30
+          form
+            +price("price-all",'price-all',"All Price",1000)
+            +price("price-1",'price-1',"$0 - $100",150)  
+            +price("price-2",'price-2',"$100 - $1200",295)  
+            +price("price-3",'price-3',"$200 - $300",246)  
+            +price("price-4",'price-4',"$300 - $400",150)  
+            +price("price-5",'price-5',"$400 - $500",150)  
+        // Price End
+        // Color Start
+        h5.section-title.position-relative.text-uppercase.mb-3
+          span.bg-secondary.pr-3 Filter by color
+        .bg-light.p-4.mb-30
+          form
+            +price("color-all",'color-all',"All Color",1000)
+            +price("color-1",'color-1',"Black",15) 
+            +price("color-2",'color-2',"White",295) 
+            +price("color-3",'color-3',"Red",234)
+            +price("color-4",'color-4',"Blue",150)
+            +price("color-5",'color-5',"Green",159) 
+        // Color End
+        // Size Start
+        h5.section-title.position-relative.text-uppercase.mb-3
+          span.bg-secondary.pr-3 Filter by size
+        .bg-light.p-4.mb-30
+          form
+            +price("size-all",'size-all',"All Size",1000)
+            +price("size-1",'size-1',"XS",150) 
+            +price("size-2",'size-2',"S",295) 
+            +price("size-3",'size-3',"M",234)
+            +price("size-4",'size-4',"L",150)
+            +price("size-5",'size-5',"ML",159) 
+        // Size End
+      // Shop Sidebar End
+      // Shop Product Start
+      .col-lg-9.col-md-8
+        .row.pb-3
+          .col-12.pb-1
+            .d-flex.align-items-center.justify-content-between.mb-4
+              div
+                button.btn.btn-sm.btn-light
+                  i.fa.fa-th-large
+                button.btn.btn-sm.btn-light.ml-2
+                  i.fa.fa-bars
+              .ml-2
+                .btn-group
+                  button.btn.btn-sm.btn-light.dropdown-toggle(type='button' data-toggle='dropdown') Sorting
+                  .dropdown-menu.dropdown-menu-right
+                    +a('#','Latest')
+                    +a('#','Popularity')
+                    +a('#','Best Rating')
+                .btn-group.ml-2
+                  button.btn.btn-sm.btn-light.dropdown-toggle(type='button' data-toggle='dropdown') Showing
+                  .dropdown-menu.dropdown-menu-right
+                    +a('#',10)
+                    +a('#',20)
+                    +a('#',30)
+          each products in product          
+            .col-lg-4.col-md-6.col-sm-6.pb-1
+              .product-item.bg-light.mb-4
+                .product-img.position-relative.overflow-hidden
+                  img.img-fluid.w-100(src=`img/${products.photo}` alt='')
+                  .product-action
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.fa.fa-shopping-cart
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.far.fa-heart
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.fa.fa-sync-alt
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.fa.fa-search
+                .text-center.py-4
+                  a.h6.text-decoration-none.text-truncate(href='')=`Product Name ${products.name}`
+                  .d-flex.align-items-center.justify-content-center.mt-2
+                    h5=`$${products.price}`
+                    h6.text-muted.ml-2
+                      del=`$${products.price}`
+                  .d-flex.align-items-center.justify-content-center.mb-1
+                    -let n=0
+                    while n<products.rating
+                      small.fa.fa-star.text-primary.mr-1
+                      -n++
+                    small (99)
+            
+                
+          .col-12
+            nav
+              ul.pagination.justify-content-center
+                li.page-item.disabled
+                  a.page-link(href='#') Previous
+                li.page-item.active
+                  a.page-link(href='#') 1
+                li.page-item
+                  a.page-link(href='#') 2
+                li.page-item
+                  a.page-link(href='#') 3
+                li.page-item
+                  a.page-link(href='#') Next
+      // Shop Product End
+  // Shop End

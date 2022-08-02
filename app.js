@@ -4,10 +4,21 @@ const userRout=require('./router/userRout')
 const productRout=require('./router/productRout')
 const reviewRout=require('./router/reviewRout')
 const categoryRout=require('./router/categoryRout')
+const viewRout=require('./router/viewRout')
+const path=require('path')
 
 const app=express()
 
 app.use(express.json())
+
+app.set('view engine','pug')
+app.set('views',path.join(__dirname,'views'))
+app.use(express.static(path.join(__dirname,'public')))
+
+app.use('/',viewRout)
+app.get('/',(req,res)=>{
+  res.status(200).render('base')
+})
 app.use('/api/v1/users',userRout)
 app.use('/api/v1/reviews',reviewRout)
 app.use('/api/v1/products',productRout)
