@@ -1,0 +1,204 @@
+extends base
+mixin price(id,forPrice,prices)
+  .custom-control.custom-radio.custom-control-inline
+              input(id=`${id}` class='custom-control-input' type='radio')
+              label.custom-control-label(for=`${forPrice}`)=prices 
+block content
+  // Breadcrumb Start
+  .container-fluid
+    .row.px-xl-5
+      .col-12
+        nav.breadcrumb.bg-light.mb-30
+          a.breadcrumb-item.text-dark(href='#') Home
+          a.breadcrumb-item.text-dark(href='#') Shop
+          span.breadcrumb-item.active Shop Detail
+  // Breadcrumb End
+  // Shop Detail Start
+  .container-fluid.pb-5
+    .row.px-xl-5
+      -const products=[...product]
+      .col-lg-5.mb-30
+        #product-carousel.carousel.slide(data-ride='carousel')
+          .carousel-inner.bg-light
+            .carousel-item.active
+              img.w-100.h-100(src=`img/${products[0].photo}` alt=`${products[0].photo}`)
+            //- -let n=1
+            //- while n<product.length-1 
+            //-   .carousel-item
+            //-     img.w-100.h-100(src=`img/${products[n].photo}` alt=`${products[n].photo}`)
+            //-   -n++
+          a.carousel-control-prev(href='#product-carousel' data-slide='prev')
+            i.fa.fa-2x.fa-angle-left.text-dark
+          a.carousel-control-next(href='#product-carousel' data-slide='next')
+            i.fa.fa-2x.fa-angle-right.text-dark
+      .col-lg-7.h-auto.mb-30
+        .h-100.bg-light.p-30
+          h3=`Product Name ${products[0].name}`
+          .d-flex.mb-3
+            .text-primary.mr-2
+              -let n=0
+              while n<products[0].rating
+                small.fa.fa-star
+                -n++
+              small.pt-1=` (${products[0].reviews.length} reviews)`
+            
+          h3.font-weight-semi-bold.mb-4=`$${products[0].newprice}`
+          p.mb-4 
+            =`${products[0].description}`
+          .d-flex.mb-3
+            strong.text-dark.mr-3 Sizes:
+            form
+              +price("size-1",'size-1',"XS") 
+              +price("size-2",'size-2',"S") 
+              +price("size-3",'size-3',"M")
+              +price("size-4",'size-4',"L")
+              +price("size-5",'size-5',"ML") 
+          .d-flex.mb-4
+            strong.text-dark.mr-3 Colors:
+            form
+              +price("color-1",'color-1',"Black") 
+              +price("color-2",'color-2',"White") 
+              +price("color-3",'color-3',"Red")
+              +price("color-4",'color-4',"Blue")
+              +price("color-5",'color-5',"Green") 
+          .d-flex.align-items-center.mb-4.pt-2
+            .input-group.quantity.mr-3(style='width: 130px;')
+              .input-group-btn
+                button.btn.btn-primary.btn-minus
+                  i.fa.fa-minus
+              input.form-control.bg-secondary.border-0.text-center(type='text' value='1')
+              .input-group-btn
+                button.btn.btn-primary.btn-plus
+                  i.fa.fa-plus
+            button.btn.btn-primary.px-3
+              i.fa.fa-shopping-cart.mr-1
+              |  Add To
+              |                             Cart
+          .d-flex.pt-2
+            strong.text-dark.mr-2 Share on:
+            .d-inline-flex
+              a.text-dark.px-2(href='')
+                i.fab.fa-facebook-f
+              a.text-dark.px-2(href='')
+                i.fab.fa-twitter
+              a.text-dark.px-2(href='')
+                i.fab.fa-linkedin-in
+              a.text-dark.px-2(href='')
+                i.fab.fa-pinterest
+    .row.px-xl-5
+      .col
+        .bg-light.p-30
+          .nav.nav-tabs.mb-4
+            a.nav-item.nav-link.text-dark.active(data-toggle='tab' href='#tab-pane-1') Description
+            a.nav-item.nav-link.text-dark(data-toggle='tab' href='#tab-pane-2') Information
+            a.nav-item.nav-link.text-dark(data-toggle='tab' href='#tab-pane-3')=`Reviews(${products[0].reviews.length})`
+          .tab-content
+            #tab-pane-1.tab-pane.fade.show.active
+              h4.mb-3 Product Description
+              p
+                =`${products[0].description}`
+            #tab-pane-2.tab-pane.fade
+              h4.mb-3 Additional Information
+              p
+                =`${products[0].information}` 
+              .row
+                .col-md-6
+                  ul.list-group.list-group-flush
+                    li.list-group-item.px-0
+                      | Sit erat duo lorem duo ea consetetur, et eirmod takimata.
+                    li.list-group-item.px-0
+                      | Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
+                    li.list-group-item.px-0
+                      | Duo amet accusam eirmod nonumy stet et et stet eirmod.
+                    li.list-group-item.px-0
+                      | Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
+                .col-md-6
+                  ul.list-group.list-group-flush
+                    li.list-group-item.px-0
+                      | Sit erat duo lorem duo ea consetetur, et eirmod takimata.
+                    li.list-group-item.px-0
+                      | Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
+                    li.list-group-item.px-0
+                      | Duo amet accusam eirmod nonumy stet et et stet eirmod.
+                    li.list-group-item.px-0
+                      | Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
+            #tab-pane-3.tab-pane.fade
+              .row
+                .col-md-6
+                  h4.mb-4 1 review for &quot;Product Name&quot;
+                  .media.mb-4
+                    img.img-fluid.mr-3.mt-1(src='img/user.jpg' alt='Image' style='width: 45px;')
+                    .media-body
+                      h6
+                        | John Doe
+                        small
+                          | - 
+                          i 01 Jan 2045
+                      .text-primary.mb-2
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star-half-alt
+                        i.far.fa-star
+                      p
+                        | Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.
+                .col-md-6
+                  h4.mb-4 Leave a review
+                  small Your email address will not be published. Required fields are marked *
+                  .d-flex.my-3
+                    p.mb-0.mr-2 Your Rating * :
+                    .text-primary
+                      i.far.fa-star
+                      i.far.fa-star
+                      i.far.fa-star
+                      i.far.fa-star
+                      i.far.fa-star
+                  form
+                    .form-group
+                      label(for='message') Your Review *
+                      textarea#message.form-control(cols='30' rows='5')
+                    .form-group
+                      label(for='name') Your Name *
+                      input#name.form-control(type='text')
+                    .form-group
+                      label(for='email') Your Email *
+                      input#email.form-control(type='email')
+                    .form-group.mb-0
+                      input.btn.btn-primary.px-3(type='submit' value='Leave Your Review')
+  // Shop Detail End
+  // Products Start
+  .container-fluid.py-5
+    h2.section-title.position-relative.text-uppercase.mx-xl-5.mb-4
+      span.bg-secondary.pr-3 You May Also Like
+    .row.px-xl-5
+      .col
+        .owl-carousel.related-carousel
+          each products in product          
+            .product-item.bg-light
+              .product-item.bg-light.mb-4
+                .product-img.position-relative.overflow-hidden
+                  img.img-fluid.w-100(src=`img/${products.photo}` alt='')
+                  .product-action
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.fa.fa-shopping-cart
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.far.fa-heart
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.fa.fa-sync-alt
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.fa.fa-search
+                .text-center.py-4
+                  a.h6.text-decoration-none.text-truncate(href='')=`Product Name ${products.name}`
+                  .d-flex.align-items-center.justify-content-center.mt-2
+                    h5=`$${products.newprice}`
+                    h6.text-muted.ml-2
+                      del=`$${products.price}`
+                  .d-flex.align-items-center.justify-content-center.mb-1
+                    -let n=0
+                    while n<products.rating
+                      small.fa.fa-star.text-primary.mr-1
+                      -n++
+                    small (99)
+            
+  // Products End
+  script(src="/js/detail.js")

@@ -19,4 +19,35 @@ const mainshop=catchError(async(req,res,next)=>{
  })
 })
 
-module.exports={mainhome,mainshop}
+const maindetail=catchError(async(req,res,next)=>{
+  const product=await Product.find().populate('reviews')
+  res.status(200).render('detail',{
+    product
+  })
+})
+
+const cart=catchError(async(req,res,next)=>{
+  const product=await Product.find()
+  res.status(200).render('cart',{
+    product
+  })
+})
+
+const checkout=catchError(async(req,res,next)=>{
+  res.status(200).render('checkout')
+})
+
+const contact=catchError(async(req,res,next)=>{
+  res.status(200).render('contact')
+})
+
+
+const signup=catchError(async(req,res,next)=>{
+  res.status(200).render('signup')
+})
+
+const signin=catchError(async(req,res,next)=>{
+  res.status(200).render('signin')
+})
+
+module.exports={mainhome,mainshop,maindetail,cart,checkout,contact,signup,signin}

@@ -43,10 +43,16 @@ const productSchema=new mongoose.Schema({
   toObject:{virtuals:true}
 })
 
-const Product=mongoose.model('products',productSchema)
 
 productSchema.virtual('newprice').get(function(){
   return this.price*0.9
 })
 
+productSchema.virtual('reviews',{
+  ref:"reviews",
+  localField:"_id",
+  foreignField:"product"
+})
+
+const Product=mongoose.model('products',productSchema)
 module.exports=Product

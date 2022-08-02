@@ -12,8 +12,8 @@
           .btn-group 
             button.btn.btn-sm.btn-light.dropdown-toggle(type='button' data-toggle='dropdown') My Account
             .dropdown-menu.dropdown-menu-right
-              button.dropdown-item(type='button') Sign in
-              button.dropdown-item(type='button') Sign up
+              a.dropdown-item(href="/signin" type='button') Sign in
+              a.dropdown-item(href="/signup" type='signup') Sign up
           .btn-group.mx-2
             button.btn.btn-sm.btn-light.dropdown-toggle(type='button' data-toggle='dropdown') USD
             .dropdown-menu.dropdown-menu-right
@@ -88,15 +88,15 @@
           .navbar-nav.mr-auto.py-0
             a.nav-item.nav-link.active(href='/home') Home
             a.nav-item.nav-link(href='/shopmain') Shop
-            a.nav-item.nav-link(href='detail.html') Shop Detail
+            a.nav-item.nav-link(href='/detail') Shop Detail
             .nav-item.dropdown
               a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown')
                 | Pages 
                 i.fa.fa-angle-down.mt-1
               .dropdown-menu.bg-primary.rounded-0.border-0.m-0
-                a.dropdown-item(href='cart.html') Shopping Cart
-                a.dropdown-item(href='checkout.html') Checkout
-            a.nav-item.nav-link(href='contact.html') Contact
+                a.dropdown-item(href='/cart') Shopping Cart
+                a.dropdown-item(href='/checkout') Checkout
+            a.nav-item.nav-link(href='/contact') Contact
           .navbar-nav.ml-auto.py-0.d-none.d-lg-block
             a.btn.px-0(href='')
               i.fas.fa-heart.text-primary
