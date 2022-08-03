@@ -38,10 +38,6 @@ const userschema=new mongoose.Schema({
         return val===this.password
       },message:"Passwordni qayta kiriting"
     }
-  },
-  photo:{
-    type:String,
-    required:[true,"Siz photo kiriting"]
   }
 })
 

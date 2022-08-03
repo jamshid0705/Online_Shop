@@ -8,14 +8,14 @@ block content
       .signin-image
         figure
           img(src='images/signin-image.jpg' alt='sing up image')
-        a.signup-image-link(href='#') Create an account
+        a.signup-image-link(href='/signup') Create an account
       .signin-form
         h2.form-title Sign in
         form#login-form.register-form(method='POST')
           .form-group
-            label(for='your_name')
+            label(for='email')
               i.zmdi.zmdi-account.material-icons-name
-            input#your_name(type='text' name='your_name' placeholder='Your Name')
+            input#email(type='text' name='email' placeholder='Your Email')
           .form-group
             label(for='your_pass')
               i.zmdi.zmdi-lock
@@ -40,3 +40,4 @@ block content
             li
               a(href='#')
                 i.display-flex-center.zmdi.zmdi-google
+  script(src="/js/signin.js")

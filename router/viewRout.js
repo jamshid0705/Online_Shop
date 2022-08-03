@@ -1,9 +1,10 @@
 const express=require('express')
 const viewController=require('../controller/viewController')
+const authController=require('../controller/authController')
 
 const Rout=express.Router()
 
-Rout.route('/home').get(viewController.mainhome)
+Rout.route('/home').get(authController.isSignIn,viewController.mainhome)
 Rout.route('/shopmain').get(viewController.mainshop)
 Rout.route('/detail').get(viewController.maindetail)
 Rout.route('/cart').get(viewController.cart)
