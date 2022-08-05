@@ -16,6 +16,7 @@ const saveTokenCookie=(token,res,req)=>{
     httpOnly:true,
     secure:req.protocol==='https'? true:false
   })
+  console.log(',,,,,,,,,,,,,,,,')
 }
 ///////////////////////// sign up //////////////////////////
 
@@ -107,8 +108,9 @@ const protect=catchError(async(req,res,next)=>{
 const isSignIn= async (req, res,next) => {
   
   if(req.cookies.jwt){  // client tomonidan kelayotgan cookieni olish
-    console.log(req.cookies.jwt)
+    console.log('bor')
     const token=req.cookies.jwt
+    
     const tokencha=jwt.verify(token,process.env.JWT_SECRET)
 
     const user=await User.findOne({_id:tokencha.id})
@@ -116,6 +118,7 @@ const isSignIn= async (req, res,next) => {
     return next()
   }
   if(!req.cookies.jwt){
+    console.log('yoq')
     res.locals.user=undefined // pugga userni berish malumotlarni
     return next()
   }

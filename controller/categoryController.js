@@ -12,28 +12,23 @@ const getAllcategory=catchError(async(req,res,next)=>{
 })
 
 const addcategory=catchError(async(req,res,next)=>{
-  const data=await Category.create([
+  const data = await Category.create([
     {
-      "name":"Dresses",
-      "image":"cat-1.jpg",
-      "product":900
+      name: "gadgets",
+      image: "cat-2.jpg",
+      product: 600,
     },
     {
-      "name":"Gadgets",
-      "image":"cat-2.jpg",
-      "product":600
+      name: "shouses",
+      image: "cat-3.jpg",
+      product: 990,
     },
     {
-      "name":"Shouses",
-      "image":"cat-3.jpg",
-      "product":990
+      name: "shirts",
+      image: "cat-4.jpg",
+      product: 990,
     },
-    {
-      "name":"Perfumery",
-      "image":"cat-4.jpg",
-      "product":990
-    }
-  ])
+  ]);
 
   res.status(200).json({
     status:'success',

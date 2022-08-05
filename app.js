@@ -5,6 +5,8 @@ const productRout=require('./router/productRout')
 const reviewRout=require('./router/reviewRout')
 const categoryRout=require('./router/categoryRout')
 const viewRout=require('./router/viewRout')
+const sizeRout=require('./router/sizeRout')
+const colorRout=require('./router/colorRout')
 const cookieParser=require('cookie-parser')
 const path=require('path')
 
@@ -25,6 +27,8 @@ app.use('/api/v1/users',userRout)
 app.use('/api/v1/reviews',reviewRout)
 app.use('/api/v1/products',productRout)
 app.use('/api/v1/categories',categoryRout)
+app.use('/api/v1/size',sizeRout)
+app.use('/api/v1/color',colorRout)
 
 app.all('*',function(req,res,next){
    next(new appError('Not page ! ',404))

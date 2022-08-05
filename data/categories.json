@@ -1,10 +1,5 @@
 [
   {
-    "name":"dresses",
-    "image":"cat-1.jpg",
-    "product":900
-  },
-  {
     "name":"gadgets",
     "image":"cat-2.jpg",
     "product":600
@@ -13,5 +8,10 @@
     "name":"shouses",
     "image":"cat-3.jpg",
     "product":990
+  },
+  {
+    "name": "shirts",
+    "image": "cat-4.jpg",
+    "product": 990
   }
 ]

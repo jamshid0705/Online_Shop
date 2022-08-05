@@ -87,7 +87,7 @@ block content
         .col-lg-3.col-md-4.col-sm-6.pb-1
           .product-item.bg-light.mb-4
             .product-img.position-relative.overflow-hidden
-              img.img-fluid.w-100(src=`img/${products.photo}` alt='')
+              img.img-fluid.w-100(src=`img/${products.photo}`, style='height:300px', alt='')
               .product-action
                 a.btn.btn-outline-dark.btn-square(href='')
                   i.fa.fa-shopping-cart
@@ -105,10 +105,10 @@ block content
                   del=`$${products.price}`
               .d-flex.align-items-center.justify-content-center.mb-1
                 -let n=0
-                while n<products.rating
+                while n<6
                   small.fa.fa-star.text-primary.mr-1
                   -n++
-                small (99)
+                small=`(${products.rating})`
       
   // Products End
   // Offer Start
@@ -128,7 +128,7 @@ block content
           .col-lg-3.col-md-4.col-sm-6.pb-1
             .product-item.bg-light.mb-4
               .product-img.position-relative.overflow-hidden
-                img.img-fluid.w-100(src=`img/${products.photo}` alt='')
+                img.img-fluid.w-100(src=`img/${products.photo}`,style='height:300px', alt='')
                 .product-action
                   a.btn.btn-outline-dark.btn-square(href='')
                     i.fa.fa-shopping-cart
@@ -146,10 +146,11 @@ block content
                     del=`$${products.price}`
                 .d-flex.align-items-center.justify-content-center.mb-1
                   -let n=0
-                  while n<products.rating
+                  while n<5
                     small.fa.fa-star.text-primary.mr-1
                     -n++
-                  small (99)
+                  small=`(${products.rating})`
+      
   // Products End
   // Vendor Start
   .container-fluid.py-5
