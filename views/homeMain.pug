@@ -68,7 +68,7 @@ block content
     .row.px-xl-5.pb-3
       each categories in category
         .col-lg-3.col-md-4.col-sm-6.pb-1
-          a.text-decoration-none(href='')
+          a.text-decoration-none(href=`/getidcategory/${categories.id}`)
             .cat-item.d-flex.align-items-center.mb-4
               .overflow-hidden(style='width: 100px; height: 100px;')
                 img.img-fluid(src=`img/${categories.image}` alt='')
@@ -82,34 +82,35 @@ block content
     h2.section-title.position-relative.text-uppercase.mx-xl-5.mb-4
       span.bg-secondary.pr-3 Featured Products
     .row.px-xl-5
-
+    
       each products in product
-        .col-lg-3.col-md-4.col-sm-6.pb-1
-          .product-item.bg-light.mb-4
-            .product-img.position-relative.overflow-hidden
-              img.img-fluid.w-100(src=`img/${products.photo}`, style='height:300px', alt='')
-              .product-action
-                a.btn.btn-outline-dark.btn-square(href='')
-                  i.fa.fa-shopping-cart
-                a.btn.btn-outline-dark.btn-square(href='')
-                  i.far.fa-heart
-                a.btn.btn-outline-dark.btn-square(href='')
-                  i.fa.fa-sync-alt
-                a.btn.btn-outline-dark.btn-square(href='')
-                  i.fa.fa-search
-            .text-center.py-4
-              a.h6.text-decoration-none.text-truncate(href='')=`Product Name ${products.name}` 
-              .d-flex.align-items-center.justify-content-center.mt-2
-                h5=`$${products.newprice}`
-                h6.text-muted.ml-2
-                  del=`$${products.price}`
-              .d-flex.align-items-center.justify-content-center.mb-1
-                -let n=0
-                while n<6
-                  small.fa.fa-star.text-primary.mr-1
-                  -n++
-                small=`(${products.rating})`
-      
+        
+            .col-lg-3.col-md-4.col-sm-6.pb-1
+              .product-item.bg-light.mb-4
+                .product-img.position-relative.overflow-hidden
+                  img.img-fluid.w-100(src=`img/${products.photo}`, style='height:300px', alt='')
+                  .product-action
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.fa.fa-shopping-cart
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.far.fa-heart
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.fa.fa-sync-alt
+                    a.btn.btn-outline-dark.btn-square(href='')
+                      i.fa.fa-search
+                .text-center.py-4
+                  a.h6.text-decoration-none.text-truncate(href=`/api/v1/products/rer/?${products.id}`)=`Product Name ${products.name}` 
+                  .d-flex.align-items-center.justify-content-center.mt-2
+                    h5=`$${products.newprice}`
+                    h6.text-muted.ml-2
+                      del=`$${products.price}`
+                  .d-flex.align-items-center.justify-content-center.mb-1
+                    -let n=0
+                    while n<6
+                      small.fa.fa-star.text-primary.mr-1
+                      -n++
+                    small=`(${products.rating})`
+        
   // Products End
   // Offer Start
   .container-fluid.pt-5.pb-3
@@ -124,7 +125,7 @@ block content
     h2.section-title.position-relative.text-uppercase.mx-xl-5.mb-4
       span.bg-secondary.pr-3 Recent Products
     .row.px-xl-5
-      each products in product
+      each products in productmin
           .col-lg-3.col-md-4.col-sm-6.pb-1
             .product-item.bg-light.mb-4
               .product-img.position-relative.overflow-hidden

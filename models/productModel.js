@@ -37,8 +37,7 @@ const productSchema = new mongoose.Schema(
       ref: "colors",
     },
     category: {
-      type: mongoose.Schema.ObjectId,
-      ref: "gategories",
+      type: String,
     },
     information: {
       type: String,

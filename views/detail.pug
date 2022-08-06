@@ -16,12 +16,11 @@ block content
   // Shop Detail Start
   .container-fluid.pb-5
     .row.px-xl-5
-      -const products=[...product]
       .col-lg-5.mb-30
         #product-carousel.carousel.slide(data-ride='carousel')
           .carousel-inner.bg-light
             .carousel-item.active
-              img.w-100.h-100(src=`img/${products[0].photo}` alt=`${products[0].photo}`)
+              img.w-100.h-100(src=`img/${product1.photo}` alt=`${product1.photo}`)
             //- -let n=1
             //- while n<product.length-1 
             //-   .carousel-item
@@ -33,18 +32,18 @@ block content
             i.fa.fa-2x.fa-angle-right.text-dark
       .col-lg-7.h-auto.mb-30
         .h-100.bg-light.p-30
-          h3=`Product Name ${products[0].name}`
+          h3=`Product Name ${product1.name}`
           .d-flex.mb-3
             .text-primary.mr-2
-              -let n=0
-              while n<products[0].rating
-                small.fa.fa-star
-                -n++
-              small.pt-1=` (${products[0].reviews.length} reviews)`
+              //- -let n=0
+              //- while n<products[0].rating
+              //-   small.fa.fa-star
+              //-   -n++
+              //- small.pt-1=` (${products[0].reviews.length} reviews)`
             
-          h3.font-weight-semi-bold.mb-4=`$${products[0].newprice}`
+          h3.font-weight-semi-bold.mb-4=`$${product1.newprice}`
           p.mb-4 
-            =`${products[0].description}`
+            =`${product1.description}`
           .d-flex.mb-3
             strong.text-dark.mr-3 Sizes:
             form
@@ -91,16 +90,16 @@ block content
           .nav.nav-tabs.mb-4
             a.nav-item.nav-link.text-dark.active(data-toggle='tab' href='#tab-pane-1') Description
             a.nav-item.nav-link.text-dark(data-toggle='tab' href='#tab-pane-2') Information
-            a.nav-item.nav-link.text-dark(data-toggle='tab' href='#tab-pane-3')=`Reviews(${products[0].reviews.length})`
+            a.nav-item.nav-link.text-dark(data-toggle='tab' href='#tab-pane-3')=`Reviews(${product1.reviews.length})`
           .tab-content
             #tab-pane-1.tab-pane.fade.show.active
               h4.mb-3 Product Description
               p
-                =`${products[0].description}`
+                =`${product1.description}`
             #tab-pane-2.tab-pane.fade
               h4.mb-3 Additional Information
               p
-                =`${products[0].information}` 
+                =`${product1.information}` 
               .row
                 .col-md-6
                   ul.list-group.list-group-flush
@@ -127,21 +126,19 @@ block content
                 .col-md-6
                   h4.mb-4 1 review for &quot;Product Name&quot;
                   .media.mb-4
-                    img.img-fluid.mr-3.mt-1(src='img/user.jpg' alt='Image' style='width: 45px;')
-                    .media-body
-                      h6
-                        | John Doe
-                        small
-                          | - 
-                          i 01 Jan 2045
-                      .text-primary.mb-2
-                        i.fas.fa-star
-                        i.fas.fa-star
-                        i.fas.fa-star
-                        i.fas.fa-star-half-alt
-                        i.far.fa-star
-                      p
-                        | Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.
+                    each product in product1.reviews
+                      img.img-fluid.mr-3.mt-1(src='img/user.jpg' alt='Image' style='width: 45px;')
+                      .media-body
+                        h6
+                          small
+                            |
+                            i=product.createAt.toLocaleString('en-US',{day:'numeric',weekday:'long',month:'numeric'})
+                        .text-primary.mb-2
+                          -let n=0
+                          while n<product.rating
+                            i.fas.fa-star
+                            -n++
+                        p=product.review
                 .col-md-6
                   h4.mb-4 Leave a review
                   small Your email address will not be published. Required fields are marked *
@@ -177,7 +174,7 @@ block content
             .product-item.bg-light
               .product-item.bg-light.mb-4
                 .product-img.position-relative.overflow-hidden
-                  img.img-fluid.w-100(src=`img/${products.photo}` alt='')
+                  img.img-fluid.w-100(src=`img/${products.photo}`,style="height:300px" alt='')
                   .product-action
                     a.btn.btn-outline-dark.btn-square(href='')
                       i.fa.fa-shopping-cart
@@ -195,10 +192,10 @@ block content
                       del=`$${products.price}`
                   .d-flex.align-items-center.justify-content-center.mb-1
                     -let n=0
-                    while n<products.rating
+                    while n<4
                       small.fa.fa-star.text-primary.mr-1
                       -n++
-                    small (99)
+                    small=`(${products.rating})`
             
   // Products End
   script(src="/js/detail.js")

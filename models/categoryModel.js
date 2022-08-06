@@ -13,7 +13,16 @@ const categorySchema=new mongoose.Schema({
     type:Number,
     required:[true,"Siz category product kiriting"]
   }
+},{
+  toJSON:{virtuals:true},
+  toObject:{virtuals:true}
 })
+
+categorySchema.virtual("products", {
+  ref: "products",
+  localField: "_id",
+  foreignField: "category",
+});
 
 const Category=mongoose.model('gategories',categorySchema)
 

@@ -3,11 +3,10 @@ const Category=require('../models/categoryModel')
 
 const getAllcategory=catchError(async(req,res,next)=>{
   const data=await Category.find()
-
   res.status(200).json({
     status:"succuss",
     results:data.length,
-    data:data
+    data:data,
   })
 })
 
@@ -36,4 +35,11 @@ const addcategory=catchError(async(req,res,next)=>{
   })
 })
 
-module.exports={getAllcategory,addcategory}
+const getId=catchError(async(req,res,next)=>{
+  const data=await Category.findById(req.params.id).populate('products')
+  res.status(200).json({
+    data:data
+  })
+})
+
+module.exports={getAllcategory,addcategory,getId}

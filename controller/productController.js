@@ -2,12 +2,11 @@ const catchError=require('../utility/catchError')
 const Product=require('../models/productModel')
 
 const getAllProduct=catchError(async(req,res,next)=>{
-  const data=await Product.find().populate('size').populate('color').populate('category').populate('reviews')
-
+  const data=await Product.find().populate('size').populate('color').populate('reviews').sort('price')
   res.status(200).json({
     status:"succuss",
     results:data.length,
-    data:data
+    data:data,
   })
 })
 
@@ -297,10 +296,11 @@ const addProduct=catchError(async(req,res,next)=>{
 })
 
 const getIdProduct=catchError(async(req,res,next)=>{
-  const productId=await Product.findById(req.params.id)
-
-  res.status(200).render('detail',{
-    productId
+  const productId=await Product.findById(req.query.id).populate('reviews')
+  console.log(productId)
+  res.status(200).json({
+    status:'success',
+    data:product
   })
 })
 
