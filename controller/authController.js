@@ -114,6 +114,7 @@ const isSignIn= async (req, res,next) => {
     const tokencha=jwt.verify(token,process.env.JWT_SECRET)
 
     const user=await User.findOne({_id:tokencha.id})
+    req.user=user
     res.locals.user=user
     return next()
   }
@@ -142,4 +143,4 @@ const role=(roles)=>{
 
 
 
-module.exports={signup,signin,protect,role,isSignIn}
+module.exports={signup,signin,protect,role,isSignIn,createToken,saveTokenCookie}

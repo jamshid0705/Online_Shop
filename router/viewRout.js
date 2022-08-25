@@ -14,6 +14,6 @@ Rout.route('/signup').get(viewController.signup)
 Rout.route('/signin').get(viewController.signin)
 
 Rout.route('/getidcategory/:id').get(authController.isSignIn,viewController.getIdProduct)
-Rout.route('/?id').get(authController.isSignIn,viewController.getidproduct)
+Rout.route('/product/:id').get(authController.isSignIn,viewController.getidproduct)
 
 module.exports=Rout

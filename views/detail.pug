@@ -20,7 +20,7 @@ block content
         #product-carousel.carousel.slide(data-ride='carousel')
           .carousel-inner.bg-light
             .carousel-item.active
-              img.w-100.h-100(src=`img/${product1.photo}` alt=`${product1.photo}`)
+              img.w-100.h-100(src=`/img/${product1.photo}` alt=`${product1.photo}`)
             //- -let n=1
             //- while n<product.length-1 
             //-   .carousel-item
@@ -65,7 +65,7 @@ block content
               .input-group-btn
                 button.btn.btn-primary.btn-minus
                   i.fa.fa-minus
-              input.form-control.bg-secondary.border-0.text-center(type='text' value='1')
+              input#cart.form-control.bg-secondary.border-0.text-center(type='text' value='1')
               .input-group-btn
                 button.btn.btn-primary.btn-plus
                   i.fa.fa-plus
@@ -127,7 +127,7 @@ block content
                   h4.mb-4 1 review for &quot;Product Name&quot;
                   .media.mb-4
                     each product in product1.reviews
-                      img.img-fluid.mr-3.mt-1(src='img/user.jpg' alt='Image' style='width: 45px;')
+                      img.img-fluid.mr-3.mt-1(src='/img/user.jpg' alt='Image' style='width: 45px;')
                       .media-body
                         h6
                           small
@@ -142,26 +142,25 @@ block content
                 .col-md-6
                   h4.mb-4 Leave a review
                   small Your email address will not be published. Required fields are marked *
+                  p#idproduct(style='opacity: 0.0')=`${product1.id}`
+
                   .d-flex.my-3
                     p.mb-0.mr-2 Your Rating * :
                     .text-primary
-                      i.far.fa-star
-                      i.far.fa-star
-                      i.far.fa-star
-                      i.far.fa-star
-                      i.far.fa-star
+                      input#rating.form-control(type='text',style='width:50px')
                   form
+                    p#iduser(style='opacity: 0.0')=`${user.id}`
                     .form-group
                       label(for='message') Your Review *
                       textarea#message.form-control(cols='30' rows='5')
                     .form-group
                       label(for='name') Your Name *
-                      input#name.form-control(type='text')
+                      input#name.form-control(type='text',value=`${user.name}`)
                     .form-group
                       label(for='email') Your Email *
-                      input#email.form-control(type='email')
+                      input#email.form-control(type='email',value=`${user.email}`)
                     .form-group.mb-0
-                      input.btn.btn-primary.px-3(type='submit' value='Leave Your Review')
+                      input#review.btn.btn-primary.px-3(type='submit' value='Leave Your Review')
   // Shop Detail End
   // Products Start
   .container-fluid.py-5
@@ -174,7 +173,7 @@ block content
             .product-item.bg-light
               .product-item.bg-light.mb-4
                 .product-img.position-relative.overflow-hidden
-                  img.img-fluid.w-100(src=`img/${products.photo}`,style="height:300px" alt='')
+                  img.img-fluid.w-100(src=`/img/${products.photo}`,style="height:300px" alt='')
                   .product-action
                     a.btn.btn-outline-dark.btn-square(href='')
                       i.fa.fa-shopping-cart
@@ -185,7 +184,7 @@ block content
                     a.btn.btn-outline-dark.btn-square(href='')
                       i.fa.fa-search
                 .text-center.py-4
-                  a.h6.text-decoration-none.text-truncate(href='')=`Product Name ${products.name}`
+                  a.h6.text-decoration-none.text-truncate(href=`/product/${products.id}`)=`Product Name ${products.name}`
                   .d-flex.align-items-center.justify-content-center.mt-2
                     h5=`$${products.newprice}`
                     h6.text-muted.ml-2
@@ -199,3 +198,5 @@ block content
             
   // Products End
   script(src="/js/detail.js")
+  script(src="/js/addReview.js")
+  script(src="/js/addcart.js")

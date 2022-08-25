@@ -296,11 +296,11 @@ const addProduct=catchError(async(req,res,next)=>{
 })
 
 const getIdProduct=catchError(async(req,res,next)=>{
-  const productId=await Product.findById(req.query.id).populate('reviews')
+  const productId=await Product.findById(req.params.id).populate('reviews')
   console.log(productId)
   res.status(200).json({
     status:'success',
-    data:product
+    data:productId
   })
 })
 

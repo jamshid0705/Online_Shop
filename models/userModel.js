@@ -26,13 +26,14 @@ const userschema=new mongoose.Schema({
   password:{
     type:String,
     required:[true,"Siz password kiriting"],
+    default:'Test.123',
     validate:{validator:function(val){
       return validator.isStrongPassword(val)
     },message:'Siz kuchliroq password kiriting'}
   },
   passwordConfirm:{
     type:String,
-    required:[true,"Siz passwordni qayta kiritishingiz kerak"],
+    // required:[true,"Siz passwordni qayta kiritishingiz kerak"],
     validate:{
       validator:function(val){
         return val===this.password

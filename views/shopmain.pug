@@ -99,7 +99,7 @@ block content
                     a.btn.btn-outline-dark.btn-square(href='')
                       i.fa.fa-search
                 .text-center.py-4
-                  a.h6.text-decoration-none.text-truncate(href='')=`Product Name ${products.name}`
+                  a.h6.text-decoration-none.text-truncate(href=`/product/${products.id}`)=`Product Name ${products.name}`
                   .d-flex.align-items-center.justify-content-center.mt-2
                     h5=`$${products.newprice}`
                     h6.text-muted.ml-2

@@ -6,7 +6,7 @@ mixin specialoffer(chegirma,img,size)
           .offer-text
             h6.text-white.text-uppercase=`Special ${chegirma}%`
             h3.text-white.mb-3 Special Offer
-            a.btn.btn-primary(href='') Shop Now
+            a.btn.btn-primary(href='/detail') Shop Now
 
 mixin featured(lass,name)
   .col-lg-3.col-md-6.col-sm-12.pb-1
@@ -32,7 +32,7 @@ block content
                   h1.display-4.text-white.mb-3.animate__animated.animate__fadeInDown Men Fashion
                   p.mx-md-5.px-5.animate__animated.animate__bounceIn
                     | Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam
-                  a.btn.btn-outline-light.py-2.px-4.mt-3.animate__animated.animate__fadeInUp(href='#') Shop Now
+                  a.btn.btn-outline-light.py-2.px-4.mt-3.animate__animated.animate__fadeInUp(href='/detail') Shop Now
             .carousel-item.position-relative(style='height: 430px;')
               img.position-absolute.w-100.h-100(src='img/carousel-2.jpg' style='object-fit: cover;')
               .carousel-caption.d-flex.flex-column.align-items-center.justify-content-center
@@ -40,7 +40,7 @@ block content
                   h1.display-4.text-white.mb-3.animate__animated.animate__fadeInDown Women Fashion
                   p.mx-md-5.px-5.animate__animated.animate__bounceIn
                     | Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam
-                  a.btn.btn-outline-light.py-2.px-4.mt-3.animate__animated.animate__fadeInUp(href='#') Shop Now
+                  a.btn.btn-outline-light.py-2.px-4.mt-3.animate__animated.animate__fadeInUp(href='/detail') Shop Now
             .carousel-item.position-relative(style='height: 430px;')
               img.position-absolute.w-100.h-100(src='img/carousel-3.jpg' style='object-fit: cover;')
               .carousel-caption.d-flex.flex-column.align-items-center.justify-content-center
@@ -48,7 +48,7 @@ block content
                   h1.display-4.text-white.mb-3.animate__animated.animate__fadeInDown Kids Fashion
                   p.mx-md-5.px-5.animate__animated.animate__bounceIn
                     | Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam
-                  a.btn.btn-outline-light.py-2.px-4.mt-3.animate__animated.animate__fadeInUp(href='#') Shop Now
+                  a.btn.btn-outline-light.py-2.px-4.mt-3.animate__animated.animate__fadeInUp(href='/detail') Shop Now
       .col-lg-4
         +specialoffer(20,'offer-1.jpg',200)
         +specialoffer(20,'offer-2.jpg',200)
@@ -88,7 +88,7 @@ block content
             .col-lg-3.col-md-4.col-sm-6.pb-1
               .product-item.bg-light.mb-4
                 .product-img.position-relative.overflow-hidden
-                  img.img-fluid.w-100(src=`img/${products.photo}`, style='height:300px', alt='')
+                  img.img-fluid.w-100(src=`/img/${products.photo}`, style='height:300px', alt='')
                   .product-action
                     a.btn.btn-outline-dark.btn-square(href='')
                       i.fa.fa-shopping-cart
@@ -99,7 +99,7 @@ block content
                     a.btn.btn-outline-dark.btn-square(href='')
                       i.fa.fa-search
                 .text-center.py-4
-                  a.h6.text-decoration-none.text-truncate(href=`/api/v1/products/rer/?${products.id}`)=`Product Name ${products.name}` 
+                  a.h6.text-decoration-none.text-truncate(href=`/product/${products.id}`)=`Product Name ${products.name}` 
                   .d-flex.align-items-center.justify-content-center.mt-2
                     h5=`$${products.newprice}`
                     h6.text-muted.ml-2
@@ -129,7 +129,7 @@ block content
           .col-lg-3.col-md-4.col-sm-6.pb-1
             .product-item.bg-light.mb-4
               .product-img.position-relative.overflow-hidden
-                img.img-fluid.w-100(src=`img/${products.photo}`,style='height:300px', alt='')
+                img.img-fluid.w-100(src=`/img/${products.photo}`,style='height:300px', alt='')
                 .product-action
                   a.btn.btn-outline-dark.btn-square(href='')
                     i.fa.fa-shopping-cart
@@ -140,7 +140,7 @@ block content
                   a.btn.btn-outline-dark.btn-square(href='')
                     i.fa.fa-search
               .text-center.py-4
-                a.h6.text-decoration-none.text-truncate(href='')=`Product Name ${products.name}` 
+                a.h6.text-decoration-none.text-truncate(href=`/product/${products.id}`)=`Product Name ${products.name}` 
                 .d-flex.align-items-center.justify-content-center.mt-2
                   h5=`$${products.newprice}`
                   h6.text-muted.ml-2

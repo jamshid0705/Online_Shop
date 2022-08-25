@@ -11,13 +11,13 @@ block content
           .row
             .col-md-6.form-group
               label First Name
-              input.form-control(type='text' placeholder='John')
+              input.form-control(type='text' placeholder='John', value=`${user.name}`)
             .col-md-6.form-group
               label Last Name
-              input.form-control(type='text' placeholder='Doe')
+              input.form-control(type='text' placeholder='Doe',, value=`${user.name}`)
             .col-md-6.form-group
               label E-mail
-              input.form-control(type='text' placeholder='example@email.com')
+              input.form-control(type='text' placeholder='example@email.com',, value=`${user.email}`)
             .col-md-6.form-group
               label Mobile No
               input.form-control(type='text' placeholder='+123 456 789')
@@ -58,13 +58,13 @@ block content
             .row
               .col-md-6.form-group
                 label First Name
-                input.form-control(type='text' placeholder='John')
+                input.form-control(type='text' placeholder='John',, value=`${user.name}`)
               .col-md-6.form-group
                 label Last Name
-                input.form-control(type='text' placeholder='Doe')
+                input.form-control(type='text' placeholder='Doe',, value=`${user.name}`)
               .col-md-6.form-group
                 label E-mail
-                input.form-control(type='text' placeholder='example@email.com')
+                input.form-control(type='text' placeholder='example@email.com',, value=`${user.email}`)
               .col-md-6.form-group
                 label Mobile No
                 input.form-control(type='text' placeholder='+123 456 789')
@@ -96,26 +96,25 @@ block content
         .bg-light.p-30.mb-5
           .border-bottom
             h6.mb-3 Products
-            .d-flex.justify-content-between
-              p Product Name 1
-              p $150
-            .d-flex.justify-content-between
-              p Product Name 2
-              p $150
-            .d-flex.justify-content-between
-              p Product Name 3
-              p $150
+            each carts in cart
+              .d-flex.justify-content-between
+                p=`Product Name ${carts.product.name}(${carts.soni})`
+                p=`$${carts.product.newprice*carts.soni}`
+                
           .border-bottom.pt-3.pb-2
             .d-flex.justify-content-between.mb-3
               h6 Subtotal
-              h6 $150
+              -let a=0
+              each carts in cart
+                -a=a+carts.product.newprice*carts.soni
+              h6=`$${a}`
             .d-flex.justify-content-between
               h6.font-weight-medium Shipping
-              h6.font-weight-medium $10
+              h6.font-weight-medium=`$${a*0.1}`
           .pt-2
             .d-flex.justify-content-between.mt-2
               h5 Total
-              h5 $160
+              h5=`$${a+a*0.1}`
         .mb-5
           h5.section-title.position-relative.text-uppercase.mb-3
             span.bg-secondary.pr-3 Payment
